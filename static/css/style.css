@@ -1,0 +1,170 @@
+body, html {
+    height: 100%;
+    text-align: center;
+}
+
+body {
+  background-color: #234d45;
+}
+
+.btn {
+    padding: 8% 8%;
+    width: 90%;
+    font-size: 150%;
+}
+
+.btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.circle-btn {
+    border-radius: 50%;
+}
+
+.btn-active
+{ /* 4d5980 */
+    background-color: #ffffff; 
+    color: #234d45;
+    transition: all 0.3s ease;
+}
+
+.btn-active:hover {
+    background-color: #ffffffd6;
+    width: 92%;
+    padding: 9% 9%;
+    transition: all 0.3s ease;
+}
+
+.btn-active:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.btn-inactive
+{
+    background-color: #8282825d;
+    color: #ffffff85;
+    transition: all 0.3s ease;
+}
+
+.btn-inactive:hover {
+    background-color: #7d7d7d;
+    width: 92%;
+    padding: 9% 9%;
+    transition: all 0.3s ease;
+}
+
+.btn-inactive:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+/* The animation code */
+@keyframes btn-wait {
+  0%   {background-color: #8080805d; width: 70%;}
+  50%  {background-color: #7b7b7b; width: 90%;}
+}
+
+/* The element to apply the animation to */
+.btn-wait {
+  animation-name: btn-wait;
+  animation-duration: 0.7s;
+}
+
+.local_container {
+    text-align: center;
+}
+
+.fa {
+    padding: 2%;
+    font-size: 500%;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 50%;
+    color: #ffffff;
+    transition: all 0.3s ease;
+}
+
+.fa:hover{
+    color: #7e7e7e;
+    transition: all 0.3s ease;
+}
+
+a:hover, a:focus, a:active, a:visited, a:link{
+    text-decoration: none;
+}
+
+
+.loader-wrapper {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #234d45;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  position: relative;
+  border: 4px solid #Fff;
+  animation: loader 2s infinite ease;
+}
+
+.loader-inner {
+  vertical-align: top;
+  display: inline-block;
+  width: 100%;
+  background-color: #fff;
+  animation: loader-inner 2s infinite ease-in;
+}
+
+@keyframes loader {
+  0% {
+    transform: rotate(0deg);
+  }
+  
+  25% {
+    transform: rotate(180deg);
+  }
+  
+  50% {
+    transform: rotate(180deg);
+  }
+  
+  75% {
+    transform: rotate(360deg);
+  }
+  
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loader-inner {
+  0% {
+    height: 0%;
+  }
+  
+  25% {
+    height: 0%;
+  }
+  
+  50% {
+    height: 100%;
+  }
+  
+  75% {
+    height: 100%;
+  }
+  
+  100% {
+    height: 0%;
+  }
+}

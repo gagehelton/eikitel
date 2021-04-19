@@ -1,6 +1,7 @@
 {
     "port":3032,
     "timeout":5,
-    "log_path":"./test_logs/",
-    "commands":{"on":"C00","off":"C01","status":"CR0","remote_on":"C00","remote_off":"C02"}
+    "log_path":"./test_logs",
+    "commands":{"on":"C00","off":"C01","status":"CR0","remote_on":"C00","remote_off":"C02"},
+    "devices":{"front":{"ip":"172.16.10.19","friendly_name":"Front Projector"},"rear":{"ip":"172.16.10.17","friendly_name":"Rear Projector"}}
 }

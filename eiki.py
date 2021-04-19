@@ -5,7 +5,7 @@ import json
 
 config = json.load(open("./config.json","r"))
 
-_INIT_LOGGER = Log(log_path=config['log_path'],name='init',level=1)
+_INIT_LOGGER = Log(log_path=config['log_path'],name='eiki_init',level=1)
 
 class Eiki():
     def __init__(self,**kwargs):
@@ -14,11 +14,11 @@ class Eiki():
         if(success):
             self.__dict__.update(**kwargs)
             self.logger = Log(log_path=config['log_path'],
-                                name=self.name+"_"+self.ip.replace(".","-"),
+                                name=self.name+"_"+self.ip.replace(".","-").replace(" ","_").lower(),
                                 level=1)
             self.session = False
-            self.state = -1 #-1 = un-set value or other error
-            self.control(command="status")
+            self.state = 1
+            #self.control(command="status")
         else:
             _INIT_LOGGER.log(lineno()+"ERROR: {}".format(error),5)            
 
@@ -29,17 +29,18 @@ class Eiki():
             if(kwargs['command'] in config['commands']):
                 self.session = Telnet(self.ip,port=config['port'],timeout=config['timeout'])
                 if(self.session):
-                    self.session.write(b'{}\n\r'.format(config['commands'][kwargs['command']]))
-                    #READ HERE AND SET PROJECTOR STATE 
-                    #SEND REQUEST FOR VALUE HERE... IDK
+                    self.session.write('{}\n\r'.format(config['commands'][kwargs['command']]).encode('utf-8'))
+                    self.logger.log(lineno()+"Session: Command {} | {}".format(kwargs['command'],self.session.read_very_eager(),1))
                     self.session.close()
-                    return True #ACTUAL PROJECTOR STATE 0=off 1=on -1=error
+                    self.state = 1 #ACTUAL PROJECTOR STATE 0=off 1=on -1=error
+                    return True
                 else:
                     self.logger.log(lineno()+"Connection Failed! {}".format(self.session),5)
-                    return -1
+                    self.state = 0
+                    return False
         else:
             self.logger.log(lineno()+"ERROR: {}".format(error),5)
-            return -1
+            return False
 
 if __name__ == "__main__":
     x = Eiki(ip="192.168.1.2",name="front")
